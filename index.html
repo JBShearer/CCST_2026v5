@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0058)file:///Users/I530341/Documents/CCST/CCST%20Draft%20L.html -->
+<!-- saved from url=(0071)file:///Users/I530341/Documents/CCST/CCST_White_Paper_FINAL_March2.html -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -473,6 +473,17 @@
             .floating-contact { display: none; }
         }
 
+    
+        /* Print: Show QR code instead of video */
+        @media print {
+            .video-iframe { display: none !important; }
+            .video-qr { display: block !important; }
+        }
+        
+        @media screen {
+            .video-qr { display: none; }
+        }
+
     </style>
 </head>
 <body>
@@ -487,18 +498,22 @@
 
         
         
+        
         <section id="intro-video" style="margin: 2rem auto; padding: 0; max-width: 900px;">
-            <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px;">
-                <iframe id="kaltura_player_1613806575" 
-                        src="https://cdnapisec.kaltura.com/p/1921661/embedPlaykitJs/uiconf_id/54739572?iframeembed=true&entry_id=1_deke7d9d" 
-                        allowfullscreen 
-                        webkitallowfullscreen 
-                        mozAllowFullScreen 
-                        allow="autoplay *; fullscreen *; encrypted-media *" 
-                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; border-radius: 8px;">
+            <!-- Video player (screen only) -->
+            <div class="video-iframe" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px;">
+                <iframe id="kaltura_player_1613806575" src="./California&#39;s AI OpportunitA Plan for Public Infrastructure _ SAP for CCST_files/54739572.html" allowfullscreen="" webkitallowfullscreen="" mozallowfullscreen="" allow="autoplay *; fullscreen *; encrypted-media *" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; border-radius: 8px;">
                 </iframe>
             </div>
+            
+            <!-- QR code (print only) -->
+            <div class="video-qr" style="text-align: center; padding: 2rem; border: 2px solid #e2e8f0; border-radius: 8px;">
+                <p style="font-weight: 600; margin-bottom: 1rem; color: #1a365d;">Introduction Video</p>
+                <img src="./California&#39;s AI OpportunitA Plan for Public Infrastructure _ SAP for CCST_files/saved_resource" alt="Video QR Code" style="width: 200px; height: 200px; margin: 0 auto;">
+                <p style="font-size: 0.9rem; color: #666; margin-top: 1rem;">Scan to watch SAP's plan for California AI infrastructure</p>
+            </div>
         </section>
+
 
 
 
@@ -584,7 +599,7 @@
 
 
         
-        About This Showcase</h2>
+        About This Showcase
         
         <p>This paper was prepared for the California Council on Science and Technology's AI Applications and Innovation Showcase on March 4, 2026.</p>
         
@@ -597,7 +612,7 @@
         <p>The question is not whether California needs this capability. The question is whether California realizes it already has it.</p>
 
 
-        Chapter 1: The Interoperability Imperative</h2>
+        Chapter 1: The Interoperability Imperative
 
 <h3>The Universal Pattern</h3>
 
@@ -1559,7 +1574,7 @@
             <svg viewBox="0 0 24 24" fill="white"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"></path></svg>
         </a>
         <button class="floating-btn email-btn" onclick="shareDocument()" title="Share">
-            <svg viewBox="0 0 24 24" fill="white"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49" stroke="white" stroke-width="2"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49" stroke="white" stroke-width="2"/></svg>
+            <svg viewBox="0 0 24 24" fill="white"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49" stroke="white" stroke-width="2"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49" stroke="white" stroke-width="2"></line></svg>
         </button>
         <button class="floating-btn print-btn" onclick="window.print()" title="Save as PDF">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
