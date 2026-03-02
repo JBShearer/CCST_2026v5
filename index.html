@@ -464,18 +464,6 @@
             .floating-btn { width: 50px; height: 50px; }
             .btn-tooltip { display: none; }
         }
-    
-        .print-btn {
-            background: linear-gradient(135deg, #2d3748, #1a202c);
-        }
-        
-        @media print {
-            .floating-contact { display: none; }
-        }
-
-    
-        
-
     </style>
 </head>
 <body>
@@ -484,17 +472,14 @@
 <div class="cover-sheet">
     <div class="cover-content">
         <div class="cover-badge">Strategic Whitepaper</div>
-        <h1>CALIFORNIA'S AI OPPORTUNITY</h1>
+        <h1 class="cover-title">CALIFORNIA'S AI OPPORTUNITY</h1>
         <p style="font-size: 1.1rem; color: #666; margin: -1rem 0 2rem 0; font-weight: 400;">Prepared by <strong>SAP</strong> for the California Council on Science and Technology<br>AI Applications and Innovation Showcase • March 4, 2026</p>
 
-
-        <section id="intro-video" style="margin: 2rem auto; padding: 0; max-width: 900px;">
+<section id="intro-video" style="margin: 2rem auto; padding: 0; max-width: 900px;">
             <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px;">
-                <iframe id="kaltura_player_1613806575" src="./California&#39;s AI Opportunity_ A Plan for Public Infrastructure _ SAP for CCST_files/54739572.html" allowfullscreen="" webkitallowfullscreen="" mozallowfullscreen="" allow="autoplay *; fullscreen *; encrypted-media *" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; border-radius: 8px;" loading="lazy">
-                </iframe>
+                <iframe id="kaltura_player_1613806575" src="./California&#39;s AI Opportunity_ A Plan for Public Infrastructure _ SAP for CCST_files/54739572.html" allowfullscreen="" webkitallowfullscreen="" mozallowfullscreen="" allow="autoplay *; fullscreen *; encrypted-media *" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; border-radius: 8px;"></iframe>
             </div>
         </section>
-
         <div class="cover-subtitle">Interoperability, Enterprise Planning, and the Logistics Network Government Didn't Know It Had</div>
         <div class="cover-author">
             <strong>Jason Shearer</strong>
@@ -515,18 +500,8 @@
         <span class="btn-tooltip">Contact Me</span>
         <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"></path></svg>
     </a>
-    <button class="floating-btn email-btn" onclick="shareDocument()" title="Share this document">
-            <svg viewBox="0 0 24 24" fill="white"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49" stroke="white" stroke-width="2"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49" stroke="white" stroke-width="2"></line></svg>
-        </button>
-
-    <button class="floating-btn print-btn" onclick="window.print()" title="Save as PDF">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
-            <polyline points="6 9 6 2 18 2 18 9"></polyline>
-            <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
-            <rect x="6" y="14" width="12" height="8"></rect>
-        </svg>
-    </button>
-    </div>
+    <button class="floating-btn email-btn" onclick="shareDocument()" title="Share"><svg viewBox="0 0 24 24" fill="white"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49" stroke="white" stroke-width="2"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49" stroke="white" stroke-width="2"></line></svg></button>
+</div>
 
 <div class="toc">
     <h2>Contents</h2>
@@ -583,9 +558,40 @@
 
 
 
+        
+        About This Showcase
+        
+        <p>This paper was prepared for the California Council on Science and Technology's AI Applications and Innovation Showcase on March 4, 2026.</p>
+        
+        <p>CCST builds AI fluency among California's legislative staff. This paper supports that mission. It presents working systems already deployed in California. It proposes seven pilots that address real compliance mandates while teaching how enterprise AI works in practice.</p>
+        
+        <p>The Loot Locker pilot demonstrates this approach. It fits in a community center. It teaches edge AI, business networks, digital identity, and circular economy in a single deployment. Legislative staff can scan a donated coat, watch AI classify it, see routing decisions, and understand what enterprise AI does and does not do. That is fluency through experience, not abstraction.</p>
+        
+        <p>This is not vendor advocacy. It is a map of infrastructure many California agencies already operate. It shows how that infrastructure meets mandates the state already faces: GASB 104 asset disclosure, NIEM-conformant data exchange, SAMOSA software inventories, and Envision 2026 interoperability commitments.</p>
+        
+        <p>The question is not whether California needs this capability. The question is whether California realizes it already has it.</p>
+
+
         Chapter 1: The Interoperability Imperative
 
 <h3>The Universal Pattern</h3>
+
+        <h3>The Coordinator's Problem</h3>
+        
+        <p>Carlos works for a California water utility. When a main breaks at 3 AM, he photographs the damaged fitting. An AI model classifies the failure mode, checks inventory, generates a work order. The work routes to the nearest crew with the right equipment. Carlos never puts his coffee down.</p>
+        
+        <p>Fifteen miles away, the county emergency operations center cannot see what Carlos sees. They cannot access the utility's asset data, crew availability, or mutual aid capacity. The systems are incompatible.</p>
+        
+        <p>During the 2025 Los Angeles fires, emergency coordinators discovered this gap at scale. Critical infrastructure data existed in utility systems. It could not be shared with agencies coordinating response.</p>
+        
+        <p>This is not a technology problem. Carlos's utility runs sophisticated enterprise systems. The county runs its own platforms. The gap is not capability. It is <em>connection</em>.</p>
+        
+        <p>The systems were never designed to interoperate across organizational boundaries. Investment at the operational level has not reached the coordination layer.</p>
+        
+        <p>This pattern repeats across California's infrastructure. Large organizations operate advanced digital systems. Smaller organizations—often serving vulnerable populations—operate with minimal digital capability. During emergencies, this gap becomes coordination failure.</p>
+        
+        <p>Not because the technology doesn't exist. Because it has never been activated for cross-boundary coordination.</p>
+
 
 <p>Across infrastructure, housing, and public services, the same structural problem repeats. Large organizations operate advanced digital systems. Smaller organizations, which often serve the most vulnerable populations, operate with minimal or no digital capability. During emergencies, this gap becomes a coordination failure.</p>
 
@@ -1508,18 +1514,9 @@
 
 
     <script>
-
-        
-        
-
         async function shareDocument() {
-            const shareData = {
-                title: "California's AI Opportunity - SAP for CCST",
-                text: "Strategic whitepaper on California's AI infrastructure",
-                url: window.location.href
-            };
             if (navigator.share) {
-                try { await navigator.share(shareData); }
+                try { await navigator.share({title: "California's AI Opportunity - SAP", url: window.location.href}); }
                 catch (err) { if (err.name !== 'AbortError') fallbackShare(); }
             } else { fallbackShare(); }
         }
@@ -1529,8 +1526,6 @@
                 const orig = btn.style.background;
                 btn.style.background = 'linear-gradient(135deg, #48bb78, #38a169)';
                 setTimeout(() => { btn.style.background = orig; }, 1000);
-            }).catch(() => {
-                window.location.href = 'mailto:?subject=' + encodeURIComponent("California's AI Opportunity") + '&body=' + encodeURIComponent(window.location.href);
             });
         }
     </script>
