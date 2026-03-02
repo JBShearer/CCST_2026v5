@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<!-- saved from url=(0058)file:///Users/I530341/Documents/CCST/CCST%20Draft%20L.html -->
+<!-- saved from url=(0071)file:///Users/I530341/Documents/CCST/CCST_White_Paper_FINAL_March2.html -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>California's AI Opportunity | CCST AI Applications and Innovation Showcase</title>
+    <title>California's AI Opportunity: A Plan for Public Infrastructure | SAP for CCST</title>
     <style>
         :root {
             --primary: #1a365d;
@@ -464,6 +464,18 @@
             .floating-btn { width: 50px; height: 50px; }
             .btn-tooltip { display: none; }
         }
+    
+        .print-btn {
+            background: linear-gradient(135deg, #2d3748, #1a202c);
+        }
+        
+        @media print {
+            .floating-contact { display: none; }
+        }
+
+    
+        
+
     </style>
 </head>
 <body>
@@ -472,7 +484,17 @@
 <div class="cover-sheet">
     <div class="cover-content">
         <div class="cover-badge">Strategic Whitepaper</div>
-        <h1 class="cover-title">CALIFORNIA'S AI OPPORTUNITY</h1>
+        <h1>CALIFORNIA'S AI OPPORTUNITY</h1>
+        <p style="font-size: 1.1rem; color: #666; margin: -1rem 0 2rem 0; font-weight: 400;">Prepared by <strong>SAP</strong> for the California Council on Science and Technology<br>AI Applications and Innovation Showcase • March 4, 2026</p>
+
+
+        <section id="intro-video" style="margin: 2rem auto; padding: 0; max-width: 900px;">
+            <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px;">
+                <iframe id="kaltura_player_1613806575" src="./California&#39;s AI Opportunity_ A Plan for Public Infrastructure _ SAP for CCST_files/54739572.html" allowfullscreen="" webkitallowfullscreen="" mozallowfullscreen="" allow="autoplay *; fullscreen *; encrypted-media *" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; border-radius: 8px;" loading="lazy">
+                </iframe>
+            </div>
+        </section>
+
         <div class="cover-subtitle">Interoperability, Enterprise Planning, and the Logistics Network Government Didn't Know It Had</div>
         <div class="cover-author">
             <strong>Jason Shearer</strong>
@@ -493,11 +515,18 @@
         <span class="btn-tooltip">Contact Me</span>
         <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"></path></svg>
     </a>
-    <a href="mailto:?subject=California%27s%20AI%20Opportunity%20-%20CCST%20Whitepaper&amp;body=I%20wanted%20to%20share%20this%20strategic%20whitepaper%20on%20California%27s%20AI%20opportunity%20prepared%20for%20the%20CCST%20AI%20Applications%20and%20Innovation%20Showcase.%0A%0AContact%3A%20https%3A%2F%2For5.mailsap.com%2Fc%2FJason_Shearer" class="floating-btn email-btn" title="Share via Email">
-        <span class="btn-tooltip">Share via Email</span>
-        <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"></path></svg>
-    </a>
-</div>
+    <button class="floating-btn email-btn" onclick="shareDocument()" title="Share this document">
+            <svg viewBox="0 0 24 24" fill="white"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49" stroke="white" stroke-width="2"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49" stroke="white" stroke-width="2"></line></svg>
+        </button>
+
+    <button class="floating-btn print-btn" onclick="window.print()" title="Save as PDF">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+            <polyline points="6 9 6 2 18 2 18 9"></polyline>
+            <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+            <rect x="6" y="14" width="12" height="8"></rect>
+        </svg>
+    </button>
+    </div>
 
 <div class="toc">
     <h2>Contents</h2>
@@ -553,7 +582,8 @@
 <p>This is not a proposal to buy new software. It is a map showing California how to meet the mandates it already faces, solve the coordination problems it already knows about, and build a digital twin of public infrastructure that makes the next crisis cheaper, faster, and less deadly to manage.</p>
 
 
-<h2 id="chapter-1">Chapter 1: The Interoperability Imperative</h2>
+
+        Chapter 1: The Interoperability Imperative
 
 <h3>The Universal Pattern</h3>
 
@@ -1476,4 +1506,32 @@
 
 
 
+
+    <script>
+
+        
+        
+
+        async function shareDocument() {
+            const shareData = {
+                title: "California's AI Opportunity - SAP for CCST",
+                text: "Strategic whitepaper on California's AI infrastructure",
+                url: window.location.href
+            };
+            if (navigator.share) {
+                try { await navigator.share(shareData); }
+                catch (err) { if (err.name !== 'AbortError') fallbackShare(); }
+            } else { fallbackShare(); }
+        }
+        function fallbackShare() {
+            navigator.clipboard.writeText(window.location.href).then(() => {
+                const btn = document.querySelector('.email-btn');
+                const orig = btn.style.background;
+                btn.style.background = 'linear-gradient(135deg, #48bb78, #38a169)';
+                setTimeout(() => { btn.style.background = orig; }, 1000);
+            }).catch(() => {
+                window.location.href = 'mailto:?subject=' + encodeURIComponent("California's AI Opportunity") + '&body=' + encodeURIComponent(window.location.href);
+            });
+        }
+    </script>
 </body></html>
