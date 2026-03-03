@@ -459,18 +459,40 @@
             }
         }
 
-        @media (max-width: 600px) {
-            body { padding: 1rem; }
-            h1 { font-size: 1.6rem; }
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+                max-width: 100%;
+            }
+            h1 { font-size: 1.8rem; }
+            h2 { font-size: 1.5rem; }
+            h3 { font-size: 1.2rem; }
             .progression-steps { flex-direction: column; }
             .arrow { transform: rotate(90deg); }
-            
+
             .cover-title { font-size: 2.2rem; }
             .cover-subtitle { font-size: 1rem; }
             .cover-sheet { padding: 1.5rem; min-height: 100svh; }
             .floating-contact { bottom: 20px; right: 20px; }
             .floating-btn { width: 50px; height: 50px; }
             .btn-tooltip { display: none; }
+
+            /* Make video responsive on mobile */
+            #kaltura_player_1613806575 {
+                width: 100% !important;
+                height: auto !important;
+                aspect-ratio: 16 / 9;
+                max-width: 100%;
+            }
+
+            table {
+                font-size: 0.85rem;
+            }
+
+            /* Stack QR codes vertically on mobile */
+            .print-only-qr > div {
+                grid-template-columns: 1fr !important;
+            }
         }
     
         .print-btn {
@@ -524,7 +546,7 @@
 
 
 
-<div id="kaltura_player_1613806575" style="width:768px;height:432px;margin:2rem auto;"></div>
+<div id="kaltura_player_1613806575" style="position:relative;width:100%;max-width:768px;margin:2rem auto;padding-bottom:56.25%;height:0;"></div>
 <script src="https://cdnapisec.kaltura.com/p/1921661/embedPlaykitJs/uiconf_id/54739572" crossorigin="anonymous"></script>
 <script>
 try {
@@ -533,8 +555,27 @@ try {
     provider: {
       partnerId: 1921661,
       uiConfId: 54739572
+    },
+    playback: {
+      pictureInPicture: false
+    },
+    ui: {
+      disable: {
+        pictureInPicture: true
+      }
     }
   });
+
+  // Make player fill container responsively
+  var playerElement = document.getElementById('kaltura_player_1613806575').querySelector('.kaltura-player-container');
+  if (playerElement) {
+    playerElement.style.position = 'absolute';
+    playerElement.style.top = '0';
+    playerElement.style.left = '0';
+    playerElement.style.width = '100%';
+    playerElement.style.height = '100%';
+  }
+
   kalturaPlayer.loadMedia({entryId: '1_deke7d9d'}).then(function() {
     console.log('Media loaded successfully');
   }).catch(function(error) {
@@ -615,55 +656,42 @@ try {
 <div class="toc">
     <h2>Contents</h2>
     <ul>
-        <li><a href="file:///Users/I530341/Documents/CCST/CCST%20Draft%20L.html#executive-summary">Executive Summary</a></li>
-        <li><a href="file:///Users/I530341/Documents/CCST/CCST%20Draft%20L.html#chapter-1">Chapter 1: The Interoperability Imperative</a></li>
-        <li><a href="file:///Users/I530341/Documents/CCST/CCST%20Draft%20L.html#chapter-2">Chapter 2: The Open Source Infrastructure You Didn't Know Existed</a></li>
-        <li><a href="file:///Users/I530341/Documents/CCST/CCST%20Draft%20L.html#chapter-3">Chapter 3: The Business Network as Public Infrastructure</a></li>
-        <li><a href="file:///Users/I530341/Documents/CCST/CCST%20Draft%20L.html#chapter-4">Chapter 4: Edge Intelligence and the Physical World</a></li>
-        <li><a href="file:///Users/I530341/Documents/CCST/CCST%20Draft%20L.html#chapter-5">Chapter 5: The Digital Twin Progression</a></li>
-        <li><a href="file:///Users/I530341/Documents/CCST/CCST%20Draft%20L.html#chapter-6">Chapter 6: Digital Identity and Citizen Services</a></li>
-        <li><a href="file:///Users/I530341/Documents/CCST/CCST%20Draft%20L.html#chapter-7">Chapter 7: Responsible AI and Governance</a></li>
-        <li><a href="file:///Users/I530341/Documents/CCST/CCST%20Draft%20L.html#chapter-8">Chapter 8: Pilots and Next Steps</a></li>
-        <li><a href="file:///Users/I530341/Documents/CCST/CCST%20Draft%20L.html#appendix-a">Appendix A: Global Evidence Base</a></li>
-        <li><a href="file:///Users/I530341/Documents/CCST/CCST%20Draft%20L.html#appendix-b">Appendix B: Enterprise AI Capabilities Reference</a></li>
+        <li><a href="#executive-summary">Executive Summary</a></li>
+        <li><a href="#chapter-1">Chapter 1: The Interoperability Problem</a></li>
+        <li><a href="#chapter-2">Chapter 2: Connect — The Business Network</a></li>
+        <li><a href="#chapter-3">Chapter 3: Plan — Cost Transparency and Integrated Planning</a></li>
+        <li><a href="#chapter-4">Chapter 4: Build — Prototypes That Teach</a></li>
+        <li><a href="#chapter-5">Chapter 5: Responsible AI and Governance</a></li>
+        <li><a href="#chapter-6">Chapter 6: Seven Pilots</a></li>
+        <li><a href="#appendix-a">Appendix A: Global Evidence Base</a></li>
+        <li><a href="#appendix-b">Appendix B: Enterprise AI Capabilities Reference</a></li>
+        <li><a href="#appendix-c">Appendix C: Technical Architecture Detail</a></li>
     </ul>
 </div>
-
 
 <h2 id="executive-summary">Executive Summary</h2>
 
 <p>California's public agencies face a convergence of mandates that share a common dependency: interoperability.</p>
 
-<p><strong>GASB 104</strong>, effective this fiscal year, requires every state and local government to separately disclose categories of capital assets it has never had to break out before. <strong>GASB 96</strong> already put every IT subscription on the balance sheet as a right-to-use asset. The federal <strong>SAMOSA Act</strong>, which passed the House in December 2025, mandates comprehensive software asset inventories across all agencies. <strong>NIEM</strong>, the National Information Exchange Model, is moving from policy preference toward procurement requirement for federally funded programs in emergency management, homeland security, and defense. California's own <strong>Envision 2026</strong> commits the state to interoperability, digital identity, and innovation procurement.</p>
+<p><strong>GASB 104</strong>, effective this fiscal year, requires every state and local government to separately disclose categories of capital assets it has never had to break out before. <strong>GASB 96</strong> already put every IT subscription on the balance sheet as a right-to-use asset. The federal <strong>SAMOSA Act</strong>, which passed the House in December 2025, mandates comprehensive software asset inventories across all agencies. <strong>NIEM</strong>, the National Information Exchange Model, is moving from policy preference toward procurement requirement for federally funded programs in emergency management, homeland security, and defense. California's own <strong><a href="https://cdt.ca.gov/technology-innovation/envision-2026/" target="_blank">Envision 2026</a></strong> commits the state to interoperability, digital identity, and innovation procurement.</p>
 
 <p>None of these mandates can be met in isolation. Asset disclosure requires cost allocation. Cost allocation requires integrated planning. Planning requires data that moves across organizational boundaries. Data exchange requires identity verification. Identity verification requires open standards. Each mandate pulls on the same thread: systems, organizations, and data must work together across boundaries of scale, maturity, and jurisdiction.</p>
 
-<p>This paper makes a specific claim: the infrastructure to meet these mandates largely exists on a platform California agencies are already running. What it has not done is connect. The paper is organized around a progression that builds from connection to simulation, with each step serving as an independent pilot:</p>
+<p>This paper makes a specific claim: the infrastructure to meet these mandates largely exists on a platform California agencies are already running. What it has not done is connect.</p>
 
-<div class="progression-diagram">
-    <div class="progression-steps">
-        <div class="step">Connect<span class="step-label">Business Network</span></div>
-        <span class="arrow">→</span>
-        <div class="step">Equip<span class="step-label">SAP Build + Mobile</span></div>
-        <span class="arrow">→</span>
-        <div class="step">Sense<span class="step-label">Edge AI + Cameras</span></div>
-        <span class="arrow">→</span>
-        <div class="step">Plan<span class="step-label">xP&amp;A + Cost Transparency</span></div>
-        <span class="arrow">→</span>
-        <div class="step">Twin<span class="step-label">Digital Twin</span></div>
-        <span class="arrow">→</span>
-        <div class="step">Simulate<span class="step-label">Omniverse</span></div>
-    </div>
-    <div style="font-size: 0.85rem; color: #4a5568; margin-top: 0.5rem;">Each step is a pilot. Each pilot delivers value independently. Each builds toward a digital twin of the enterprise: a working model of how California's public infrastructure actually operates, where decisions can be tested before they are made.</div>
-</div>
+<p>Most California state and local government (SLED) customers already run an enterprise platform for finance, HR, and procurement. Many already use Ariba. What they do not know is that they sit adjacent to a business network connecting utilities, food distributors, logistics providers, and warehouse operators — over 15 million trading partners. They can participate in logistics orchestration, emergency supply staging, and cross-agency coordination without procuring dedicated systems. The network is there. It has not been turned on.</p>
 
-<p>Most California state and local government customers already run an enterprise platform for finance, HR, and procurement. Many already use Ariba. What they do not know is that they sit adjacent to a <strong>business network of over 15 million trading partners</strong>: utilities, food distributors, logistics providers, and warehouse operators. They can participate in logistics orchestration, emergency supply staging, and cross-agency coordination without procuring dedicated systems. The network is there. It has not been turned on.</p>
+<p>Three moves unlock it:</p>
 
-<p>The same platform produces the cost transparency that GASB 104 demands, the NIEM-conformant data exchange that federal coordination requires, and the verifiable identity infrastructure that makes data sharing trustworthy without a central broker. The architecture is open source, built on standards running in production across European data spaces, and designed so that no single vendor controls the infrastructure. When a legislator asks "does this lock us in?", the answer is documented across a decade of open source contributions from Cloud Foundry to Eclipse Tractus-X.</p>
+<p><strong>1. Connect the network.</strong> Activate Business Network logistics for coordination across agencies, utilities, and suppliers.</p>
 
-<p>Seven pilots are proposed. Each can start within six months. Each addresses a real California problem: utility coordination during wildfires, school food logistics, donation management and workforce development, integrated public planning, edge AI for field service, cost transparency for legislative accountability, and a federated data space for small utilities that today cannot share critical data with the agencies responsible for keeping their communities safe.</p>
+<p><strong>2. Add planning.</strong> Extend financial planning into integrated planning across procurement, logistics, assets, and workforce.</p>
 
-<p>This is not a proposal to buy new software. It is a map showing California how to meet the mandates it already faces, solve the coordination problems it already knows about, and build a digital twin of public infrastructure that makes the next crisis cheaper, faster, and less deadly to manage.</p>
+<p><strong>3. Build prototypes.</strong> Deploy pilots that demonstrate edge AI, cost transparency, and citizen services on infrastructure that already exists.</p>
+
+<p>The Department of Defense's Task Force Lima — the largest military generative AI experimentation effort in history — validated this approach in December 2024. Their finding: roughly half of viable AI use cases resided not in frontier model applications but in traditional enterprise systems. Classification, routing, anomaly detection, planning optimization. The capabilities described in this paper. The institutional aftermath — CDAO losing nearly 60% of its staff, the $15B Advana contract cancelled, 18F dissolved — reinforces the architectural choice: build on open, federated foundations that survive political transitions, not centralized platforms that don't.</p>
+
+<p>Seven pilots are proposed. Each can start within six months. Each addresses a real California problem.</p>
 
 
 
@@ -676,12 +704,12 @@ try {
         
         <p>The Loot Locker pilot demonstrates this approach. It fits in a community center. It teaches edge AI, business networks, digital identity, and circular economy in a single deployment. Legislative staff can scan a donated coat, watch AI classify it, see routing decisions, and understand what enterprise AI does and does not do. That is fluency through experience, not abstraction.</p>
         
-        <p>This is not vendor advocacy. It is a map of infrastructure many California agencies already operate. It shows how that infrastructure meets mandates the state already faces: GASB 104 asset disclosure, NIEM-conformant data exchange, SAMOSA software inventories, and Envision 2026 interoperability commitments.</p>
+        <p>This is not vendor advocacy. This paper was prepared by SAP. The infrastructure described is largely open-source and standards-based, built on Cloud Foundry, Eclipse Tractus-X, W3C Verifiable Credentials, and NIEM. We present it because California agencies are already running much of it. This is not a procurement proposal. It is a map of what is adjacent to what California already owns.</p>
         
         <p>The question is not whether California needs this capability. The question is whether California realizes it already has it.</p>
 
 
-                <h2>Chapter 1: The Interoperability Imperative</h2>
+                <h2 id="chapter-1">Chapter 1: The Interoperability Problem</h2>
 
 
         <h3>The Coordinator's Problem</h3>
@@ -752,7 +780,7 @@ try {
 
 <p>The <strong>Catena-X initiative</strong>, founded by BMW, Deutsche Telekom, Bosch, SAP, Siemens, and others, created the first large-scale federated data space for industry. Its open-source implementation, <strong>Eclipse Tractus-X</strong>, enables secure, sovereign data exchange between organizations that do not share common systems. Three principles matter here:</p>
 
-<p><strong>Data sovereignty:</strong> Each participant retains control of their data. Small organizations share only what is necessary for specific coordination scenarios, nothing more. Participants verify each other's identity through self-sovereign credentials rather than a central broker (Chapter 6 describes the technical mechanism).</p>
+<p><strong>Data sovereignty:</strong> Each participant retains control of their data. Small organizations share only what is necessary for specific coordination scenarios, nothing more. Participants verify each other's identity through self-sovereign credentials rather than a central broker (Chapter 2 describes the technical mechanism).</p>
 
 <p><strong>Federated integration:</strong> The Eclipse Dataspace Connector enables exchange regardless of internal platform. An organization on paper can participate alongside one running advanced GIS.</p>
 
@@ -779,7 +807,63 @@ try {
 <p>Tractus-X and NIEM solve the same problem from different starting points. Europe started with industry consortia and built toward government. The U.S. started with government and is building toward open standards. The architectural patterns converge: federated data exchange, sovereign identity verification, standard vocabularies, no central broker. SAP's position in both ecosystems is the bridge.</p>
 
 
-<h2 id="chapter-2">Chapter 2: The Open Source Infrastructure You Didn't Know Existed</h2>
+<h2 id="chapter-2">Chapter 2: Connect — The Business Network</h2>
+
+<p>When FEMA coordinates disaster response with a California county, the exchange runs on phone calls, email, and PDF attachments. When CalOES stages emergency supplies, visibility into warehouse capacity depends on personal relationships, not systems.</p>
+
+<p>The coordination layer already exists. SAP Business Network connects over 15 million trading partners. When a California city uses Ariba for procurement, it is already connected. What it does not know is that the same network supports freight collaboration, asset condition sharing, and real-time supply chain coordination.</p>
+
+<p><strong>SLED customers do not need to buy transportation or warehouse management systems to participate in logistics orchestration.</strong> They connect through the Business Network to utilities, food distributors, 3PLs, and warehouse operators who are already there.</p>
+
+<p>A county emergency management office coordinates supply staging after a wildfire. Today: phone calls and spreadsheets. Through the Business Network: the office sees available warehouse capacity from regional 3PLs, routes freight through carriers already on the network, and tracks delivery in real time. No new system required.</p>
+
+<p>The integration layer underneath this is SAP Integration Suite — recognized as a Gartner Magic Quadrant Leader for iPaaS five consecutive years, positioned highest in Ability to Execute. Event-driven architectures, API management, and B2B integration run on one service. This is the same platform that powers the Tractus-X data spaces running in production across Europe.</p>
+
+<h3>The Transformation Toolchain</h3>
+
+<p>A legislator asking "what evidence supports this?" deserves a direct answer. Each capability referenced in this paper has been independently evaluated:</p>
+
+<table>
+    <tbody><tr>
+        <th>Capability</th>
+        <th>Recognition</th>
+        <th>What It Does</th>
+    </tr>
+    <tr>
+        <td><strong>Integration Suite</strong></td>
+        <td>Gartner iPaaS Leader, 5 consecutive years (highest in Ability to Execute)</td>
+        <td>Connects systems across organizational boundaries — the plumbing of interoperability</td>
+    </tr>
+    <tr>
+        <td><strong>SAP Signavio</strong></td>
+        <td>Gartner Process Mining Leader, 3 consecutive years</td>
+        <td>Maps how processes actually run vs. how they should — exposes bottlenecks and compliance gaps</td>
+    </tr>
+    <tr>
+        <td><strong>SAP LeanIX</strong></td>
+        <td>Gartner EA Tools Leader, 5 consecutive years (highest in both Vision and Execution — first SAP solution to achieve this)</td>
+        <td>Maps every application, its cost, its owner, and its retirement date — the x-ray of the IT landscape</td>
+    </tr>
+    <tr>
+        <td><strong>WalkMe</strong></td>
+        <td>Gartner Customers' Choice for Digital Adoption Platforms; only vendor meeting all Gartner-evaluated capabilities</td>
+        <td>Guides users through new systems in real time — the difference between software deployed and software used</td>
+    </tr>
+    <tr>
+        <td><strong>Analytics Cloud</strong></td>
+        <td>BARC Market Leader for integrated BI and analytics; broadest planning and analytics capability in a single platform</td>
+        <td>Connects financial planning, operational analytics, and predictive models — this is the xP&amp;A engine</td>
+    </tr>
+    <tr>
+        <td><strong>LeanIX + Signavio + WalkMe</strong></td>
+        <td>QKS SPARK Matrix Digital Twin of an Organization Leader, 5 consecutive years (highest in Technology Excellence and Customer Impact)</td>
+        <td>A live, queryable model of how the enterprise operates: its processes, applications, people, and data</td>
+    </tr>
+</tbody></table>
+
+<p>These are not aspirational capabilities. They are shipping products with multi-year analyst track records. When this paper describes a digital twin, integrated planning, or process optimization, it is describing capabilities that independent analysts have evaluated and ranked against every competitor in the market.</p>
+
+<h3>The Open Source Foundation</h3>
 
 <h3>A Decade of Building</h3>
 
@@ -835,6 +919,24 @@ try {
 
 <p>This is a company that has spent a decade building connective tissue between enterprise systems and open ecosystems. That connective tissue is what California's interoperability challenge requires.</p>
 
+<h3>The Task Force Lima Validation</h3>
+
+<p>In December 2024, the Department of Defense sunsetted Task Force Lima, the largest military generative AI experimentation effort in history. Over twelve months, the task force analyzed hundreds of AI workflows and categorized them into fifteen areas across two categories: warfighting functions and enterprise management functions.</p>
+
+<p>The finding that matters for this paper: roughly half of those use cases resided in enterprise management — financial management, healthcare information management, logistics, human resources. Not frontier model problems. Enterprise application problems. Classification, routing, anomaly detection, planning optimization. The capabilities described in Chapters 3 through 5.</p>
+
+<p>Task Force Lima drew a distinction between what it called Mode 1 experimentation — exploring frontier capabilities like large language models — and Mode 2 — applying AI to existing enterprise workflows where data, processes, and governance already exist. Mode 2 produced faster, more measurable results precisely because it operated on established infrastructure. The insight was not that frontier AI lacks value. It was that organizations systematically underinvest in the enterprise AI that delivers returns immediately.</p>
+
+<p>The institutional trajectory that followed validates the architectural choices in this paper more powerfully than any technical argument could.</p>
+
+<p>Task Force Lima's parent organization, the Chief Digital and Artificial Intelligence Office, has since lost nearly 60 percent of its staff. The $15 billion contract to scale its Advana analytics platform was cancelled. The Advana program officer, Alex O'Toole, departed for Databricks. CDAO itself has been reorganized under the Under Secretary of Defense for Research and Engineering, with a 120-day review deadline to determine the future of both Advana and the Maven AI program. Advana is being split into three pieces. Key leaders dispersed: Stuart Wagner became the Navy's Chief Data and AI Officer. Radha Plumb, who led CDAO through Lima's sunset, departed at the start of the new administration.</p>
+
+<p>Meanwhile, 18F — the federal digital services team that built Cloud.gov, the government's platform-as-a-service — has been dissolved. Cloud.gov ran on Cloud Foundry, the same open-source technology SAP has contributed to as a founding platinum member since 2014. The platform persists. The institutional home does not.</p>
+
+<p>The pattern could not be clearer. Centralized platforms built within institutional structures are vulnerable to reorganization, budget cuts, and political transition. Federated, open-source infrastructure survives because no single entity owns it. The Cloud Foundry foundation that SAP helped build continues independent of any agency's budget cycle. The Tractus-X data space architecture has no single node to decommission. The W3C standards underlying Decentralized Identity Verification do not require Senate confirmation to remain operational.</p>
+
+<p>California should learn from this sequence. The federal government built excellent AI and analytics infrastructure. It staffed that infrastructure with talented people. A political transition dispersed both. The lesson is not that the work was wrong. The lesson is that the architecture was fragile. Build on open foundations. Federate the infrastructure. Make it survive the next reorganization, because the next reorganization is always coming.</p>
+
 <h3>Sovereign Cloud and Data Sovereignty</h3>
 
 <p>For government customers, where data lives and who controls it is not negotiable. SAP's sovereign cloud positioning includes dedicated government cloud instances, FedRAMP authorization pathways, and architectural alignment with Gaia-X data sovereignty principles.</p>
@@ -843,10 +945,18 @@ try {
 
 <h3>Why This Matters for SLED</h3>
 
-<p>State and local government customers interact with SAP in the ERP room: finance, HR, procurement. They have not been shown the open source integration layer, the data space architecture, or the business network. This paper aims to change that. Not by proposing new procurement, but by showing what is already adjacent to what they own.</p>
+<p>State, local, and education (SLED) customers interact with SAP in the ERP room: finance, HR, procurement. They have not been shown the open source integration layer, the data space architecture, or the business network. This paper aims to change that. Not by proposing new procurement, but by showing what is already adjacent to what they own.</p>
 
 
-<h2 id="chapter-3">Chapter 3: The Business Network as Public Infrastructure</h2>
+
+
+<h3>The Open Source Way</h3>
+
+<p>SAP's approach to open source is documented in the <a href="https://podcast.opensap.info/open-source-way/" target="_blank">SAP Open Source Way podcast</a>, which explores how enterprise software companies build sustainable open source communities while maintaining commercial viability. The podcast features conversations with maintainers, contributors, and ecosystem partners across SAP's open source portfolio — from Cloud Foundry to Eclipse Tractus-X.</p>
+
+<p>This is relevant for California because the infrastructure proposed in this paper rests on the same foundations. When a legislator asks whether this architecture will survive vendor transitions or budget cycles, the answer is in the governance models these communities have built. The same Cloud Foundry technology powered the federal government's Cloud.gov platform, built by 18F. When 18F was dissolved and Cloud.gov's future became uncertain, the open-source foundation continued — because no single institution owned it.</p>
+
+
 
 <h3>The Logistics Partner Government Didn't Know It Had</h3>
 
@@ -942,7 +1052,104 @@ try {
 <p>A state that deploys PaPM-based cost transparency is not just building a planning tool. It is building a compliance infrastructure that meets GASB disclosure requirements, prepares for SAMOSA-aligned state mandates, and produces the auditable cost evidence that legislators and auditors will increasingly demand.</p>
 
 
-<h2 id="chapter-4">Chapter 4: Edge Intelligence and the Physical World</h2>
+
+
+<h3>Digital Identity and Citizen Services</h3>
+
+<h3>The Same Pattern, Applied to People</h3>
+
+<p>The interoperability challenge appears again in citizen services. A California resident displaced by wildfires needs DMV replacement, emergency benefits, utility transfers, and housing assistance. Each requires separate identity verification through separate systems. For the one in five Californians who lack reliable internet, these barriers compound.</p>
+
+<p>The California Identity Gateway, part of the <a href="https://cdt.ca.gov/technology-innovation/envision-2026/" target="_blank">Envision 2026</a> strategy, addresses identity fragmentation. But identity is not just a citizen services problem. It is the missing piece of the data space architecture described in Chapter 1. Before two organizations can share data in a federated model, they must verify each other's identity without relying on a central authority.</p>
+
+<h3>How It Works</h3>
+
+<p>Europe solved this. Rather than building centralized identity systems, European data space initiatives use self-sovereign identity: organizations and individuals hold verifiable credentials that can be checked by any party that trusts the issuer, without calling home to a central broker. The W3C standards for Decentralized Identifiers (DIDs) and Verifiable Credentials provide the mechanism. No blockchain required. Standard web protocols.</p>
+
+<p>SAP's Decentralized Identity Verification service implements this model on BTP. It is already running in production at Catena-X. When a data consumer requests data from a provider, the consumer presents credentials. The provider checks them cryptographically. If valid, the exchange proceeds. No central identity broker is involved.</p>
+
+<p>The same architecture applies directly to California. When a small utility shares asset data with a large IOU during an emergency, both parties verify identity through credentials issued by a trusted authority — the CPUC, a coordination entity, or the data space operator. The small utility does not hand over control to the large utility. It presents a credential. The credential is verified. The data flows. When the coordination ends, the sharing stops.</p>
+
+<p>For citizen services, the Identity Gateway does not need to be a centralized system. It can be a trust framework: credential schemas, trusted issuers, and verification policies that allow agencies to verify residents through portable credentials rather than point-to-point integrations. A resident proves eligibility for emergency benefits with a credential that also works at the DMV, without either agency sharing backend systems. Privacy-preserving selective disclosure — proving a claim without revealing the data behind it — is built into the credential standard.</p>
+
+<p>The technical architecture, including the DARPA concerns that stalled U.S. decentralized identity efforts, zero-knowledge proofs, and the MOSA (Modular Open Systems Approach) parallel, is detailed in Appendix C.</p>
+
+<h3>Multi-Channel Service Delivery</h3>
+
+<p>Multi-channel service delivery — where a single backend supports web, phone, SMS, kiosks, and offline-capable mobile — is a proven pattern. The design principle: digital inclusion is an architectural requirement, not an add-on. Services must work for a resident on gigabit fiber and for a resident on intermittent cellular in a rural area that has just been evacuated.</p>
+
+<p>The equity dimension connects to the infrastructure story. The same rural communities served by under-resourced utilities are the most digitally excluded and the most vulnerable to wildfire.</p>
+
+
+
+
+<h2 id="chapter-3">Chapter 3: Plan — Cost Transparency and Integrated Planning</h2>
+
+<h3>Cost Transparency: What Does It Actually Cost?</h3>
+
+<p>Government budgets are full of pooled costs: facility overhead, IT infrastructure, shared administration, fleet maintenance. These costs are real but invisible at the program level. A legislator asks what it actually costs to deliver wildfire coordination, or school food distribution, fully burdened. The honest answer in most jurisdictions: we do not know.</p>
+
+<p>SAP Profitability and Performance Management (PaPM) distributes pooled costs through multi-step, auditable allocation models. In defense contracting, PaPM produces the indirect rate calculations that survive a DCAA audit. In state government, the same engine produces the fully burdened cost of any service. The result surfaces through a CAP application dashboard where an agency head drills from total budget to allocated cost per service, and a legislative analyst compares delivery costs across programs.</p>
+
+<p>This matters now because of converging compliance pressure. GASB 96 reclassified IT subscriptions as balance-sheet assets. GASB 104 requires separate disclosure by asset category. The SAMOSA Act mandates software inventories. PaPM closes the loop: asset data already in SAP gets categorized, allocated, and disclosed in a format that satisfies both accounting requirements and the harder legislative question — what did we get for this money?</p>
+
+<h3>Integrated Planning (xP&amp;A)</h3>
+
+<p>Cost transparency tells you where resources went. Integrated planning tells you where they should go. Instead of finance planning in one system, supply chain in another, and workforce in a third, xP&amp;A connects them. Financial forecasts, procurement spend, logistics capacity, and workforce availability inform each other in real time.</p>
+
+<p>When a city sees freight collaboration data next to its financial plan, next to procurement spend, next to asset maintenance schedules — that is xP&amp;A applied to public infrastructure. Budget cycles compress. Resource allocation improves.</p>
+
+
+<table>
+    <tbody><tr>
+        <th>Planning Domain</th>
+        <th>Traditional SLED Approach</th>
+        <th>xP&amp;A Integrated Approach</th>
+    </tr>
+    <tr>
+        <td>Financial Planning</td>
+        <td>Annual budget cycle in isolation</td>
+        <td>Continuous planning informed by logistics, procurement, and asset data</td>
+    </tr>
+    <tr>
+        <td>Procurement</td>
+        <td>Purchase orders disconnected from supply chain visibility</td>
+        <td>Procurement linked to supplier capacity and delivery forecasts</td>
+    </tr>
+    <tr>
+        <td>Logistics</td>
+        <td>Not managed; delegated to individual departments</td>
+        <td>Network-connected freight and supply chain visibility feeding the financial plan</td>
+    </tr>
+    <tr>
+        <td>Asset Management</td>
+        <td>Reactive maintenance tracked in spreadsheets</td>
+        <td>Predictive maintenance integrated with capital planning</td>
+    </tr>
+    <tr>
+        <td>Workforce</td>
+        <td>Headcount budgeting disconnected from service demand</td>
+        <td>Workforce planning shaped by service volumes, seasonal patterns, and field data</td>
+    </tr>
+</tbody></table>
+
+<h3>Cost Transparency: The Foundation xP&amp;A Requires</h3>
+
+<p>Integrated planning without cost transparency is planning without a foundation. A city can connect its financial plan to procurement and logistics data, but if it cannot show where shared costs actually land, the planning produces numbers no one trusts.</p>
+
+<p>Government budgets are full of pooled costs: facility overhead, IT infrastructure, shared administrative services, fleet maintenance. These costs are real. They are also, in most agencies, invisible at the program level. A legislator asks what it actually costs to deliver wildfire coordination, or school food distribution, or homeless outreach, fully burdened, including the infrastructure underneath. The honest answer today, in most jurisdictions, is: we do not know.</p>
+
+<p><strong>SAP Profitability and Performance Management (PaPM)</strong> is an allocation engine built for exactly this problem. It takes pooled costs and distributes them through multi-step, auditable allocation models: driver-based spreads, hierarchical waterfalls, weighted distributions, iterative cycles. In defense contracting, PaPM produces the indirect rate calculations (fringe, overhead, G&amp;A) that survive a DCAA audit. In state government, the same engine can produce the fully burdened cost of any service, program, or jurisdiction.</p>
+
+<p>The allocation models are not simple division. PaPM handles sequential allocation steps where the output of one pool feeds the input of the next. It runs what-if simulations before posting actuals. It pulls from multiple data sources: S/4HANA for financial actuals, the Business Network for logistics costs, EPPM for project costs. The result is a fully attributed cost model where every dollar of shared infrastructure is assigned to the programs it supports, through logic that can be examined, questioned, and defended.</p>
+
+<p>The interface is a <strong>CAP application</strong> built on SAP's open-source Cloud Application Programming model. CAP runs on BTP. The application surfaces PaPM's allocation results as a clean, queryable cost transparency dashboard. An agency head drills from a total budget down to allocated cost per service. A legislative budget analyst compares fully burdened delivery costs across programs. A program manager sees the real cost of the infrastructure underneath their operation, not just the direct charges on their ledger.</p>
+
+<p>This connects the xP&amp;A story to accountability. Integrated planning tells you where resources should go. Cost transparency tells you where they actually went, and what they actually cost. Together, they give government something it has rarely had: a planning system backed by auditable truth about the cost of delivering services.</p>
+
+<p>For the CCST audience, cost transparency also addresses a political reality. Every dollar of state investment in AI, interoperability, or coordination infrastructure will face scrutiny. PaPM provides the mechanism to show, line by line, what that investment produced and what it cost. That is not a technical capability. That is a governance requirement.</p>
+
+<h2 id="chapter-4">Chapter 4: Build — Prototypes That Teach</h2>
 
 <p>Planning and coordination produce better decisions. But decisions happen in the field: on a utility pole, at a school loading dock, at a shelter intake desk. This chapter describes what happens when the interoperability layer reaches the people who do the work.</p>
 
@@ -1024,93 +1231,7 @@ try {
 <p>The classification and routing logic scales. At a community drive, you sort shoes. At a defense receiving dock, you determine whether an inbound shipment routes to a COMSEC cage, a flight line, or a depot in theater. Same pattern. Different consequences.</p>
 
 
-<h2 id="chapter-5">Chapter 5: The Digital Twin Progression</h2>
-
-<p>A legislator asks: if we fund this interoperability work, what do we get? The answer is a working model of how California's public infrastructure actually operates. Not a dashboard. Not a report. A model you can ask questions of and test decisions against before committing resources. That model is a digital twin.</p>
-
-<h3>From Data to Digital Twin</h3>
-
-<p>An organization that has connected to the Business Network, equipped field workers with AI-enabled mobile apps, deployed edge sensors, and integrated all of it into a unified planning environment has built the foundation of a <strong>digital twin</strong> without necessarily naming it.</p>
-
-<p>SAP Business Transformation Management (BTM) provides the framework for a <strong>digital twin of the enterprise</strong>: a functional model of how the organization operates. Its processes, data flows, resource allocations, and performance against plan. This is not a visualization. It can be queried, analyzed, and used for scenario planning.</p>
-
-<p>For a city government, a digital twin means answering questions that are currently unanswerable. What happens to emergency logistics capacity if a primary warehouse floods? How does a 15% increase in school enrollment affect the food distribution network? If three maintenance crews are redirected to wildfire recovery, what deferred maintenance risk accumulates on water infrastructure?</p>
-
-<h3>Integrated Product Development and Infrastructure Management</h3>
-
-<p>The digital twin extends into <strong>Integrated Product Development (IPD)</strong>, a discipline from aerospace and manufacturing where complex physical assets are managed through their entire lifecycle: design, production, operation, maintenance, retirement.</p>
-
-<p>Public infrastructure is a complex physical asset. A bridge has a design specification, a construction history, an operational profile, a maintenance schedule, and an end-of-life plan. So does a water treatment plant, a school building, and a power substation. Managing these assets the way aerospace manages aircraft, with full lifecycle digital twins, predictive maintenance, and integrated planning, is not aspirational. The technology exists. The gap is in applying it.</p>
-
-<h3>The NVIDIA Omniverse Partnership</h3>
-
-<p>When the digital twin needs spatial visualization, the model extends into simulation. A city planner needs to see traffic flow when a new transit line opens. An emergency manager needs to test evacuation routes during a wildfire.</p>
-
-<p>SAP's partnership with NVIDIA Omniverse connects enterprise operational data to physically accurate 3D simulation environments. Operational data (asset conditions, logistics flows, workforce positions) comes from SAP. Spatial rendering comes from Omniverse. The result is a simulation environment where policy decisions can be tested before implementation, with real data.</p>
-
-<p>This is the final step: <strong>Connect, Equip, Sense, Plan, Twin, Simulate.</strong> Each step builds on the previous one. Each is a pilot in its own right. The entire progression runs on infrastructure that California agencies are already paying for or can access through the Business Network.</p>
-
-
-<h2 id="chapter-6">Chapter 6: Digital Identity and Citizen Services</h2>
-
-<h3>The Same Pattern, Applied to People</h3>
-
-<p>The interoperability challenge appears again in citizen services. A California resident displaced by wildfires needs DMV replacement, emergency benefits, utility transfers, and housing assistance. Each requires separate identity verification through separate systems. For the one in five Californians who lack reliable internet, these barriers compound.</p>
-
-<p>The California Identity Gateway, part of the Envision 2026 strategy, addresses identity fragmentation. This aligns with the European <strong>IPCEI-CIS</strong> (Important Project of Common European Interest, Cloud Infrastructure and Services) initiative, which is building federated digital identity infrastructure across member states. The architectural pattern matches the utility data space: federated, sovereign, interoperable. Each agency keeps its identity systems while participating in a shared verification layer.</p>
-
-<p>But identity is not just a citizen services problem. It is the missing piece of the data space architecture described in Chapter 1. Before two organizations can share data in a federated model, they must verify each other's identity without relying on a central authority. Identity is the gate that makes data sovereignty enforceable.</p>
-
-<h3>Why the U.S. Stalled on Decentralized Identity</h3>
-
-<p>The technology for decentralized identity verification exists. Europe is running it in production. The U.S. is not, and the reason matters for California's planning.</p>
-
-<p>In 2022, a DARPA-commissioned study by Trail of Bits found that blockchain implementations contained structural weaknesses: unintended centralities, vulnerable node software, traffic concentration through a small number of ISPs. The cryptography was sound. The infrastructure was not. Since blockchain had been the leading candidate for decentralized identity, the report froze U.S. government momentum.</p>
-
-<p>Europe responded differently. Rather than abandoning decentralized identity, European initiatives separated the concept of self-sovereign identity (SSI) from blockchain. SSI requires three things: decentralized identifiers (DIDs), verifiable credentials issued against those identifiers, and a way to verify credentials without calling home to a central authority. The W3C standards for DIDs and Verifiable Credentials provide all three. The DID:Web method uses standard web protocols. No chain. No mining. No unintended centralities. This is the identity model now running in production at Catena-X.</p>
-
-<h3>SAP Decentralized Identity Verification (DIV)</h3>
-
-<p><strong>SAP Decentralized Identity Verification</strong> is a BTP service that implements self-sovereign identity for inter-organizational communication. It enables organizations to sign, verify, and manage verifiable credentials through an administration interface and API. The service is already deployed in production dataspaces.</p>
-
-<p>In the Catena-X dataspace, DIV handles the identification step of the Decentralized Claims Protocol. When a data consumer requests data from a provider, the consumer presents verifiable credentials issued by a trusted authority (the dataspace operator, a standards body like GLEIF). The provider's Data Space Integration service checks the credentials against its access policies. If the credentials are valid, the contract negotiation and data exchange proceed. No central identity broker is involved. The verification is cryptographic, auditable, and sovereign.</p>
-
-<p>The same architecture applies directly to the utility data space described in Chapter 1. When a small utility shares asset data with a large IOU during an emergency, DIV verifies both parties' identities through credentials issued by a trusted authority (the CPUC, a utility coordination entity, or the dataspace operator itself). The small utility does not hand over control of its identity to the large utility. It presents a credential. The credential is verified. The data flows. When the coordination scenario ends, the data sharing stops. The identities remain sovereign.</p>
-
-<p>SAP's Data Space Integration capability (part of SAP Integration Suite) implements the general Dataspace Protocol for data exchange. DIV handles the identity layer. Together, they provide the complete technical foundation for federated data spaces on BTP. When the data exchanged must conform to NIEM standards (as will increasingly be required for emergency management and cross-jurisdictional coordination), the exchange packages can be structured as NIEM-conformant IEPDs, with DIV verifying participant identity and Data Space Integration handling the transport. The result: verified organizations exchanging standardized data, with no central broker and no vendor lock-in on either side.</p>
-
-<h3>The MOSA Principle Applied to Identity</h3>
-
-<p>For technologists familiar with defense acquisition, the architecture maps to a known principle.</p>
-
-<p>The Modular Open Systems Approach (MOSA) mandates that systems be composable, interoperable, and vendor-independent. MOSA was designed for hardware: modular weapons systems, open avionics standards, interchangeable sensor payloads. The principle is that no single vendor should own the interface between components.</p>
-
-<p>Applying MOSA to identity is a conceptual shift. Traditional identity and access management is monolithic: one IAM system controls authentication and authorization for an entire organization. Federated identity (SAML, OIDC) distributes authentication across providers but still relies on bilateral trust relationships that become brittle at scale. Self-sovereign identity, implemented through verifiable credentials and decentralized identifiers, makes identity itself a composable, interoperable component. An organization's identity is not locked into any single provider's IAM system. It is a credential that can be verified by any party that trusts the issuer.</p>
-
-<p>This is a familiar idea in Europe, where SSI is already operating in production dataspaces. In the U.S. defense and government context, where the Baron report created justified skepticism about blockchain-based approaches, it represents a path forward that addresses DARPA's concerns while delivering the decentralization that data sovereignty requires. The identity is decentralized. The verification is cryptographic. The implementation runs on standard web protocols, not blockchain infrastructure.</p>
-
-<p>For California, this means the Identity Gateway does not need to be a centralized system. It can be a trust framework: a set of credential schemas, trusted issuers, and verification policies that allow agencies to verify each other and verify residents through credentials rather than through point-to-point integrations. The same DIV infrastructure that verifies utility identities in a data space can verify agency identities in citizen services. The same verifiable credential that proves a resident's eligibility for emergency benefits can prove their identity at the DMV, without either agency sharing backend systems.</p>
-
-<h3>Zero-Knowledge Proofs: Prove the Claim, Protect the Data</h3>
-
-<p>Verifiable credentials solve the trust problem. Zero-knowledge proofs solve the privacy problem that comes with it.</p>
-
-<p>A <strong>zero-knowledge proof (ZKP)</strong> allows one party to prove a statement is true without revealing the data behind it. In the context of SSI, this means selective disclosure: a credential holder proves they meet a requirement without exposing the full credential. A resident proves they are over 18 without revealing their birthdate. An agency proves it holds a valid operating license without exposing its financial statements. A utility proves it meets CPUC safety standards without sharing proprietary grid data with competitors.</p>
-
-<p>This is not theoretical. W3C Verifiable Credentials support ZKP-based selective disclosure through BBS+ signatures and related cryptographic schemes. The European Union Digital Identity Wallet (EUDIW) program is building ZKP capabilities into its SSI architecture to comply with GDPR data minimization requirements. The principle: collect and share only the minimum data necessary for the transaction.</p>
-
-<p>For the compliance pressures described in Chapter 3, ZKPs provide a critical bridge. A state agency can prove GASB 104 compliance to a legislative auditor through a verifiable credential without exposing the full asset inventory to every party in the verification chain. A small utility in the data space can prove it holds valid credentials to participate in emergency coordination without revealing its financial position to a large IOU. Identity verification and compliance attestation happen simultaneously, with privacy preserved by design.</p>
-
-<p>SAP's DIV service, built on W3C standards, provides the infrastructure for issuing, holding, and verifying these credentials. The ZKP layer is where identity, compliance, and privacy converge into a single architectural pattern. The identity is sovereign. The proof is selective. The verification is cryptographic. The data stays where it belongs.</p>
-
-<h3>Multi-Channel Service Delivery</h3>
-
-<p>Multi-channel service delivery, where a single backend supports web, phone, SMS, kiosks, and offline-capable mobile, is a proven pattern with measurable outcomes in comparable government deployments worldwide. The design principle: digital inclusion is an architectural requirement, not an add-on. Services must work for a resident on gigabit fiber and for a resident on intermittent cellular in a rural area that has just been evacuated.</p>
-
-<p>The equity dimension connects to the infrastructure story. The same rural communities served by under-resourced utilities are the most digitally excluded and the most vulnerable to wildfire.</p>
-
-
-<h2 id="chapter-7">Chapter 7: Responsible AI and Governance</h2>
+<h2 id="chapter-5">Chapter 5: Responsible AI and Governance</h2>
 
 <p>California introduced more than 33 AI bills in the first half of the 2025-2026 session. SB 53 regulates frontier model developers. AB 316 bars AI autonomy as a defense in civil actions. AB 853 expands content provenance requirements. Every capability in this paper is designed to operate within this framework and the responsible AI principles established by the Governor's Frontier AI Working Group.</p>
 
@@ -1127,7 +1248,7 @@ try {
 <p>The Tractus-X, DS4SSCC, and FIWARE data space models show that federated data sharing does not require centralized data collection. Each organization retains sovereignty over its data. Jurisdictions retain control of their systems while participating in shared standards. This is a design principle, not a concession.</p>
 
 
-<h2 id="chapter-8">Chapter 8: Pilots and Next Steps</h2>
+<h2 id="chapter-6">Chapter 6: Seven Pilots</h2>
 
 <p>The mandates described in this paper (GASB 104, NIEM conformance, SAMOSA, Envision 2026) are on calendars, not wish lists. The progression (connect, equip, sense, plan, twin, simulate) is not a monolithic program. It is a series of pilots. Each delivers value independently. Each meets a specific compliance or coordination requirement. Together, they build toward a digital twin of California's public infrastructure.</p>
 
@@ -1528,6 +1649,12 @@ try {
         <td><a href="https://www.sap.com/products/technology-platform/decentralized-identity-verification.html">Product Page</a></td>
         <td>GA</td>
     </tr>
+    <tr>
+        <td><strong>Data Space Integration</strong></td>
+        <td>Implements Dataspace Protocol for federated data exchange; NIEM-conformant exchange packages; works with DIV for verified participant identity</td>
+        <td><a href="https://www.sap.com/products/technology-platform/integration-suite.html">Product Page</a></td>
+        <td>GA</td>
+    </tr>
 </tbody></table>
 
 <h3>Planning &amp; Analytics</h3>
@@ -1609,6 +1736,136 @@ try {
     <tr><td>Published Innovation Award use cases</td><td>375+</td></tr>
     <tr><td>Business Network trading partners</td><td>15M+</td></tr>
 </tbody></table>
+
+
+<h2 id="appendix-c">Appendix C: Technical Architecture Detail</h2>
+
+<p>This appendix provides engineering depth for readers who want to understand the mechanisms behind the capabilities described in the main text.</p>
+
+<h3>Digital Twin Architecture</h3>
+
+<p>SAP Business Transformation Management (BTM) provides the framework for a digital twin of the enterprise: a functional model of how the organization operates — its processes, data flows, resource allocations, and performance against plan. This is not a visualization. It is queryable, analyzable, and usable for scenario planning.</p>
+
+<p><strong>Integrated Product Development (IPD)</strong> extends the twin into physical asset lifecycle management. Originated in aerospace and manufacturing, IPD manages complex assets through design, production, operation, maintenance, and retirement. A bridge has a design specification, a construction history, an operational profile, a maintenance schedule, and an end-of-life plan. So does a water treatment plant, a school building, and a power substation.</p>
+
+<p><strong>NVIDIA Omniverse Integration.</strong> When the digital twin requires spatial visualization, SAP's partnership with NVIDIA Omniverse connects enterprise operational data to physically accurate 3D simulation environments. Operational data (asset conditions, logistics flows, workforce positions) comes from SAP. Spatial rendering comes from Omniverse. The result: a simulation where policy decisions can be tested before implementation, with real data.</p>
+
+<h3>Decentralized Identity: Technical Foundation</h3>
+
+<p><strong>Why the U.S. Stalled.</strong> In 2022, a DARPA-commissioned study by Trail of Bits found that blockchain implementations contained structural weaknesses: unintended centralities, vulnerable node software, traffic concentration through a small number of ISPs. The cryptography was sound. The infrastructure was not. Since blockchain had been the leading U.S. candidate for decentralized identity, the report froze government momentum.</p>
+
+<p><strong>How Europe Responded.</strong> European initiatives separated self-sovereign identity from blockchain. SSI requires three things: decentralized identifiers (DIDs), verifiable credentials issued against those identifiers, and a way to verify credentials without calling home to a central authority. The W3C standards provide all three. The DID:Web method uses standard web protocols. No chain. No mining. No unintended centralities. This is the identity model running in production at Catena-X.</p>
+
+<p><strong>SAP Decentralized Identity Verification (DIV).</strong> A BTP service implementing SSI for inter-organizational communication. Organizations sign, verify, and manage verifiable credentials through an administration interface and API. In Catena-X, DIV handles the identification step of the Decentralized Claims Protocol. When a data consumer requests data, it presents verifiable credentials issued by a trusted authority. The provider's Data Space Integration service checks credentials against access policies. If valid, the contract negotiation and data exchange proceed. No central identity broker.</p>
+
+<p><strong>Zero-Knowledge Proofs (ZKPs).</strong> ZKPs allow one party to prove a statement is true without revealing the data behind it. In the SSI context: selective disclosure. A resident proves they are over 18 without revealing their birthdate. An agency proves it holds a valid operating license without exposing financial statements. A utility proves CPUC safety compliance without sharing proprietary grid data. W3C Verifiable Credentials support ZKP-based selective disclosure through BBS+ signatures. The European Digital Identity Wallet program is building ZKP capabilities to comply with GDPR data minimization. SAP DIV, built on W3C standards, provides the infrastructure.</p>
+
+<p><strong>The MOSA Principle Applied to Identity.</strong> For technologists familiar with defense acquisition: the Modular Open Systems Approach (MOSA) mandates composable, interoperable, vendor-independent systems. Traditional IAM is monolithic. Federated identity (SAML, OIDC) distributes authentication but relies on bilateral trust relationships that become brittle at scale. Self-sovereign identity makes identity itself a composable component. An organization's identity is a credential verifiable by any party that trusts the issuer, not locked into any provider's IAM system. In Europe, this is operational. In the U.S., where the DARPA report created justified blockchain skepticism, it represents a path forward: decentralized identity on standard web protocols, not blockchain infrastructure.</p>
+
+
+
+
+<h3>Extended: Task Force Lima and the Validation of Enterprise AI</h3>
+
+<p>In December 2024, the Department of Defense sunsetted Task Force Lima, the largest military generative AI experimentation effort in history. Over twelve months, the task force analyzed hundreds of AI workflows and categorized them into fifteen areas across two categories: warfighting functions and enterprise management functions.</p>
+
+<p>The finding that matters for this paper: roughly half of those use cases resided in enterprise management — financial management, healthcare information management, logistics, human resources. Not frontier model problems. Enterprise application problems. Classification, routing, anomaly detection, planning optimization.</p>
+
+<p>Task Force Lima drew a distinction between <strong>Mode 1 experimentation</strong> — exploring frontier capabilities like large language models — and <strong>Mode 2</strong> — applying AI to existing enterprise workflows where data, processes, and governance already exist. Mode 2 produced faster, more measurable results precisely because it operated on established infrastructure.</p>
+
+<p>The institutional trajectory that followed validates the architectural choices in this paper. Task Force Lima's parent organization, the Chief Digital and Artificial Intelligence Office (CDAO), has since lost nearly 60 percent of its staff. The $15 billion contract to scale its Advana analytics platform was cancelled. The Advana program officer, Alex O'Toole, departed for Databricks. CDAO itself has been reorganized under the Under Secretary of Defense for Research and Engineering, with a 120-day review deadline to determine the future of both Advana and the Maven AI program. Key leaders dispersed: Stuart Wagner became the Navy's Chief Data and AI Officer. Radha Plumb, who led CDAO through Lima's sunset, departed at the start of the new administration.</p>
+
+<p>Meanwhile, 18F — the federal digital services team that built Cloud.gov, the government's platform-as-a-service — has been dissolved. Cloud.gov ran on Cloud Foundry, the same open-source technology SAP has contributed to as a founding platinum member since 2014. The platform persists. The institutional home does not.</p>
+
+<p>The pattern could not be clearer. Centralized platforms built within institutional structures are vulnerable to reorganization, budget cuts, and political transition. Federated, open-source infrastructure survives because no single entity owns it.</p>
+
+<h3>Extended: CliffordNet Architecture</h3>
+
+<p>CliffordNet is a geometric-algebra-based neural architecture that uses Clifford Algebraic Networks (CANs) to encode spatial relationships through the geometric product rather than standard convolution. The architecture delivers several advantages for edge deployment:</p>
+
+<ul>
+<li><strong>Compact representation:</strong> Small model variants deliver disproportionate accuracy per parameter</li>
+<li><strong>Linear complexity:</strong> The interaction mechanism runs at linear complexity with a sparse rolling attention pattern</li>
+<li><strong>Geometric reasoning:</strong> Spatial transformations (rotation, reflection, scaling) are handled natively through geometric algebra</li>
+<li><strong>On-device deployment:</strong> Model size and inference speed enable practical deployment on commodity hardware</li>
+</ul>
+
+<p>For California-specific applications, the training strategy matters as much as the architecture. Every photograph taken at a donation center, every pallet counted at a loading dock, every pothole captured generates labeled training data. Over time, a vision system trained on California warehouse images, California road conditions, and California infrastructure assets becomes measurably more accurate for California use cases. The people using it are training it, with real data in real conditions. This is sovereign AI in the most practical sense: a model trained on local data, running on local devices, improving through local use, owned by the public agencies that generated the training data.</p>
+
+<h3>Extended: NIEM Technical Detail</h3>
+
+<p>The National Information Exchange Model (NIEM) defines a common vocabulary for sharing data across jurisdictions. It originated in 2005 through a partnership between the Department of Justice and Department of Homeland Security, and now spans DoD, HHS, and state/local participants.</p>
+
+<p>NIEM is not a system. It is a standard for building data exchange packages that can be understood by any participant regardless of their internal systems. A NIEM-conformant outage report from a small California utility contains geospatial coordinates, asset identifiers, crew status, and mutual aid capacity in a format that emergency management software can parse without custom integration.</p>
+
+<p>As NIEM compliance moves toward procurement requirement for federally funded programs in emergency management, homeland security, and defense, California agencies receiving federal funding will increasingly need NIEM-conformant data exchange. The data that needs to become NIEM-conformant — outage reports, asset conditions, crew availability, logistics status — already exists in the SAP systems California utilities and agencies run today. The gap is not data availability. It is the mapping layer between internal data structures and NIEM exchange packages.</p>
+
+<p>SAP Integration Suite provides this mapping layer through its B2B integration capabilities. The same service that powers Eclipse Tractus-X data spaces in Europe can produce NIEM-conformant exchange packages for U.S. federal coordination. This is not a new integration project. It is configuration work on infrastructure that already exists.</p>
+
+<h3>Extended: European Data Space Architecture</h3>
+
+<p><strong>DS4SSCC (Data Space for Smart and Sustainable Cities and Communities)</strong> is deploying federated data infrastructure for European municipal governments. The sectors map directly to California priorities: cross-border mobility, energy management, participatory urban planning, environmental monitoring.</p>
+
+<p>The architecture relies on three open standards:</p>
+
+<ul>
+<li><strong>FIWARE NGSI-LD:</strong> API specification for real-time context data</li>
+<li><strong>Dataspace Protocol:</strong> Contract negotiation and access control for federated data exchange</li>
+<li><strong>W3C Verifiable Credentials:</strong> Decentralized identity for participant verification</li>
+</ul>
+
+<p><strong>Eclipse Tractus-X</strong> provides the reference implementation. Originally built for automotive supply chains (BMW, SAP, Siemens, and others), Tractus-X demonstrates federated data exchange at industrial scale. Three principles: data sovereignty (each participant controls their data), federated integration (any organization can participate regardless of internal platform), and open standards (no single vendor controls the infrastructure).</p>
+
+<p>The governance model matters as much as the technology. Tractus-X operates as an Eclipse Foundation project with open governance, transparent roadmaps, and vendor-neutral leadership. When California considers building a data space for utility coordination or housing data, the governance precedent exists. The technical stack is proven. The political risk — that a single vendor or agency controls the infrastructure — has been designed out through open governance.</p>
+
+<h3>The Digital Twin Progression</h3>
+
+<p>A legislator asks: if we fund this interoperability work, what do we get?</p>
+
+<p>The answer is a working model of how California's public infrastructure actually operates. Not a dashboard. Not a report. A model you can test decisions against before committing resources.</p>
+
+<p>An organization that has connected to the Business Network, equipped field workers with AI-enabled mobile apps, deployed edge sensors, and integrated all of it into a unified planning environment has built the foundation of a digital twin without necessarily naming it. Each chapter in this paper is a layer of that twin:</p>
+
+<table>
+    <tbody><tr><th>Layer</th><th>What It Provides</th><th>Chapter</th></tr>
+    <tr>
+        <td><strong>Connect</strong></td>
+        <td>Data flowing across organizational boundaries</td>
+        <td>Ch. 1–3</td>
+    </tr>
+    <tr>
+        <td><strong>Equip</strong></td>
+        <td>Field workers generating structured data</td>
+        <td>Ch. 4</td>
+    </tr>
+    <tr>
+        <td><strong>Sense</strong></td>
+        <td>Edge AI capturing conditions in real time</td>
+        <td>Ch. 4</td>
+    </tr>
+    <tr>
+        <td><strong>Plan</strong></td>
+        <td>Integrated planning across all resource types</td>
+        <td>Ch. 3</td>
+    </tr>
+    <tr>
+        <td><strong>Twin</strong></td>
+        <td>Queryable model of operations</td>
+        <td>Ch. 5</td>
+    </tr>
+    <tr>
+        <td><strong>Simulate</strong></td>
+        <td>Test decisions before making them</td>
+        <td>Ch. 5</td>
+    </tr>
+</tbody></table>
+
+<p>For a city government, a digital twin means answering questions that are currently unanswerable. What happens to emergency logistics capacity if a primary warehouse floods? How does a 15% increase in school enrollment affect the food distribution network? If three maintenance crews are redirected to wildfire recovery, what deferred maintenance risk accumulates on water infrastructure?</p>
+
+<p>Public infrastructure is a complex physical asset with a lifecycle: design, construction, operation, maintenance, retirement. Managing these assets the way aerospace manages aircraft — with full lifecycle digital twins and predictive maintenance — is not aspirational. The technology exists in production. SAP's partnership with NVIDIA Omniverse extends the model into physically accurate 3D simulation where policy decisions can be tested with real operational data.</p>
+
+<p>The technical architecture for digital twins and the Omniverse integration is detailed in Appendix C for readers who want depth on the engineering.</p>
+
 
 
 <div class="draft-notice">
